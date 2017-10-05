@@ -7,25 +7,23 @@ const TicketsList = (props) => {
     const styles = {
         ticketsContainer: {
             maxWidth: '1000px',
-            height: '200px',
-            border: '1px black solid',
             display: 'flex',
             flexWrap: 'wrap'
         },
         ticketItem: {
-            width: '100px',
-            height: '100px',
-            border: '1px blue solid'
+            width: '200px',
+            height: '200px',
+            marginRight: '10px',
+            marginBottom: '10px'
         },
         ticketImage: {
             width: '100%',
             height: '80%',
-            border: '1px red solid'
         },
-        ticketDesc: {
+        ticketBtn: {
             width: '100%',
             height: '20%',
-            border: '1px yellow solid'
+            padding: '10px 20px 10px 20px'
         }
     }
 
@@ -33,22 +31,31 @@ const TicketsList = (props) => {
         console.log(e.target.parentNode.children[0])
     }
 
+    const onClickImage = (e) => {
+        props.onClickImage(e.target.src)
+    }
+
     
     const tickets = props.tickets.map((ticket, i) => 
         <div style={styles.ticketItem} key={i}>
             <img style={styles.ticketImage} src={ticket.imageUrl}
+            onClick={onClickImage}
             />
             <button 
-                style={styles.ticketDesc}
+                style={styles.ticketBtn}
                 onClick={ticketBtnClick} >
-                {ticket.status === 'unread' ? 'Mark as read': 'check'}
+                {ticket.status === 'unread' ? 'Mark as checked': 'checked'}
             </button>
         </div>
     );
     return (
-        <div style={styles.ticketsContainer}>
-            {tickets}
+        <div style={{width: '100%'}}>
+            <h2>Submitted Tickets</h2>
+            <div style={styles.ticketsContainer}>
+                {tickets}
+            </div>
         </div>
+        
     )
 }
 

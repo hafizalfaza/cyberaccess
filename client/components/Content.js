@@ -5,8 +5,9 @@ import TicketsList from './TicketsList';
 const styles = {
     content: {
         position: 'absolute',
-        left: '0',
-        top: '200px'
+        left: '50%',
+        transform: 'translateX(-50%)',
+        top: '100px'
     }
 }
 
@@ -56,7 +57,7 @@ const tickets = [
 const Content = (props) => {
     return (
         <div style={styles.content}>
-            <TicketsList tickets={tickets} ticketBtnClick={props.ticketBtnClick}/>
+            <TicketsList tickets={tickets} ticketBtnClick={props.ticketBtnClick} onClickImage={props.onClickImage}/>
         </div>
     )
 }
